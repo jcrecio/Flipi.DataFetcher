@@ -1,0 +1,14 @@
+*background process that continuously 
+	- fetches flight data from Flight API Data provider: fetcher
+	- publishes flight data to a stream processing system
+
+*background process that continuously
+	- consumes data from stream and pushes into a database ("write-only")
+	- from time to time syncs write-only database to a "read-only" database	
+	- compacts databases?
+
+*rest-api-service that reads and serves data from read-only database
+*clients that consumes this rest-api to show data to the user
+
+name app: flyyti?
+package: com.flyti
