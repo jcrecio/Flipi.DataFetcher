@@ -17,3 +17,6 @@ Add this to your pom.xml
 			</plugin>
 		</plugins>
 	</build>
+
+
+- Check test publication xml on build with maven
