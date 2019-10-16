@@ -1,13 +1,21 @@
 package com.flyti.background;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
+import com.flyti.background.Message.MessagePublisher;
+import com.flyti.background.Message.MessagePublisherFactory;
+
+public class App  {
+	private static MessagePublisher messagePublisher;
+	
+	public static MessagePublisher getMessagePublisher() {
+		return messagePublisher;
+	}
+	
+	private static void setMessagePublisher(MessagePublisher messagePublisher) {
+		App.messagePublisher = messagePublisher;
+	}
+	
+    public static void main(String[] args)
     {
-        System.out.println( "Hello World!" );
+    	App.setMessagePublisher(MessagePublisherFactory.Create(new Configuration()));
     }
 }
