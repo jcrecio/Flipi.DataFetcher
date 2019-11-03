@@ -23,11 +23,11 @@ public class MessagePublisher {
         for (int index = 0; index < configuration.MESSAGE_COUNT; index++) {
         	Message message = new Message();
         	message.setFlightReference("12345");
-            ProducerRecord<String, Message> record = null;
-            record = new ProducerRecord<String, Message>(configuration.TOPIC_NAME, message);
+            ProducerRecord<String, Message> record = new ProducerRecord<String, Message>(configuration.TOPIC_NAME, message);
+
             try {
-            RecordMetadata metadata = (RecordMetadata) kafkaProducer.send(record).get();
-                        System.out.println("Record sent with key " + index + " to partition " + metadata.partition()
+                RecordMetadata metadata = (RecordMetadata) kafkaProducer.send(record).get();
+                System.out.println("Record sent with key " + index + " to partition " + metadata.partition()
                         + " with offset " + metadata.offset());
                  } 
             catch (ExecutionException e) {

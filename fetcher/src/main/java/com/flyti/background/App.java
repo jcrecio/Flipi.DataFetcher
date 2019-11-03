@@ -17,5 +17,6 @@ public class App  {
     public static void main(String[] args)
     {
     	App.setMessagePublisher(MessagePublisherFactory.Create(new Configuration()));
+    	App.messagePublisher.run();
     }
 }
