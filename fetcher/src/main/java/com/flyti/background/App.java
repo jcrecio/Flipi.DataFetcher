@@ -1,5 +1,7 @@
 package com.flyti.background;
 
+import java.io.IOException;
+
 import com.flyti.background.Message.MessagePublisher;
 import com.flyti.background.Message.MessagePublisherFactory;
 
@@ -14,7 +16,7 @@ public class App  {
 		App.messagePublisher = messagePublisher;
 	}
 	
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException
     {
     	App.setMessagePublisher(MessagePublisherFactory.Create(new Configuration()));
     	App.messagePublisher.run();

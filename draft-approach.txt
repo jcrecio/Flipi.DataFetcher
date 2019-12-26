@@ -1,6 +1,10 @@
-*background process that continuously 
+*background process that continuously (flipi.DataFetcher)
 	- fetches flight data from Flight API Data provider: fetcher
 	- publishes flight data to a stream processing system
+	- it gets the data that needs to fetch from a request container
+
+*request container (Flipi.RequestContainer)
+	- contains all the info that needs to be fetched
 
 *background process that continuously
 	- consumes data from stream and pushes into a database ("write-only")

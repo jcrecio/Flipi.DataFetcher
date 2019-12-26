@@ -7,11 +7,9 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class MessageSerializer implements Serializer<Message> {
-    @Override
     public void configure(Map<String, ?> configs, boolean isKey) {
     }
     
-    @Override
     public byte[] serialize(String topic, Message data) {
         byte[] retVal = null;
         ObjectMapper objectMapper = new ObjectMapper();
@@ -22,7 +20,6 @@ public class MessageSerializer implements Serializer<Message> {
         }
         return retVal;
     }
-    @Override
     public void close() {
     }
     

@@ -2,8 +2,12 @@ package com.flyti.background.Message;
 
 public class Message {
 	private String flightReference;
-	private String from;
-	private String to;
+	private FlightRequest flightRequest;
+	
+	public Message(FlightRequest flightRequest, String flightReference) {
+		this.flightReference = flightReference;
+		this.flightRequest = flightRequest;
+	}
 	
 	public String getFlightReference() {
 		return flightReference;
@@ -11,16 +15,10 @@ public class Message {
 	public void setFlightReference(String flightReference) {
 		this.flightReference = flightReference;
 	}
-	public String getFrom() {
-		return from;
+	public FlightRequest getFlightRequest() {
+		return flightRequest;
 	}
-	public void setFrom(String from) {
-		this.from = from;
-	}
-	public String getTo() {
-		return to;
-	}
-	public void setTo(String to) {
-		this.to = to;
+	public void setFlightRequest(FlightRequest flightRequest) {
+		this.flightRequest = flightRequest;
 	}
 }
