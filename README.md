@@ -1,7 +1,6 @@
 # Flipi.DataFetcher
 Background process to fetch data from flights API and publish results to a streaming message system.
 
-Status of fetcher:
 [![Build Status](https://jcrecio.visualstudio.com/StudyOfBestFlights_NO_NAME/_apis/build/status/jcrecio.StudyOfBestFlights_NO_NAME?branchName=master)](https://jcrecio.visualstudio.com/StudyOfBestFlights_NO_NAME/_build/latest?definitionId=7&branchName=master)
 
 Run the fetcher (run_fetcher.sh)
