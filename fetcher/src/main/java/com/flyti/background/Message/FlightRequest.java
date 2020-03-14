@@ -4,7 +4,7 @@ public class FlightRequest {
 	private String maxPrice;
 	private String from;
 	private String to;
-	private String requestId;	
+	private String requestId;
 	
 	public String getFrom() {
 		return from;

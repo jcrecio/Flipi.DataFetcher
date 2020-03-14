@@ -11,4 +11,14 @@ public class Flight {
 	public String getReference() {
 		return this.reference;
 	}
+	
+	public String getDateAsString() {
+		return dateAsString;
+	}
+
+	public void setDateAsString(String dateAsString) {
+		this.dateAsString = dateAsString;
+	}
+
+	private String dateAsString;
 }
