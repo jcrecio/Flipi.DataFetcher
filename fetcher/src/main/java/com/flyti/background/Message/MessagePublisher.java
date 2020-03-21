@@ -1,7 +1,6 @@
 package com.flyti.background.Message;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
@@ -32,7 +31,6 @@ public class MessagePublisher {
 
 			for (int j = 0; j < flights.size(); j++) {
 				Message message = new Message(flightRequest, flights.get(j).getReference());
-
 				ProducerRecord<String, Message> record = new ProducerRecord<String, Message>(configuration.TOPIC_NAME, message);
 
 				try {
@@ -52,6 +50,7 @@ public class MessagePublisher {
 
 	private ArrayList<Flight> findFlightsForSpeficicRequest(FlightRequest flightRequest) {
 		// TODO: find the flights from an external provider, like sky-scanner
+		// This is a fake provider code
 		ArrayList<Flight> flights = new ArrayList<Flight>();
 		for (int i = 0; i < new Random().nextInt(100); i++) {
 			flights.add(new Flight(createRandomFlightNumber()));
@@ -67,9 +66,8 @@ public class MessagePublisher {
 	}
 	
 	private String createRandomFlightNumber() {
-		
 		Random random = new Random();
-		char[] word = new char[2]; // words of length 3 through 10. (1 and 2 letter words are boring.)
+		char[] word = new char[2];
         for(int j = 0; j < word.length; j++)
         {
             word[j] = (char)('a' + random.nextInt(26));
