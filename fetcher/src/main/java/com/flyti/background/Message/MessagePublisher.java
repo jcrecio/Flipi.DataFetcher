@@ -17,30 +17,30 @@ public class MessagePublisher {
 	private final KafkaProducer kafkaProducer;
 	private final Configuration configuration;
 
-	public MessagePublisher(KafkaProducer<?, ?> kafkaProducer) {
+	public MessagePublisher(final KafkaProducer<?, ?> kafkaProducer) {
 		this.configuration = new Configuration();
 		this.kafkaProducer = kafkaProducer;
 	}
 
 	public void run() throws IOException {
-		ArrayList<FlightRequest> flightRequests = getFlightRequests();
+		final ArrayList<FlightRequest> flightRequests = getFlightRequests();
 
 		for (int index = 0; index < flightRequests.size(); index++) {
-			FlightRequest flightRequest = flightRequests.get(index);
-			ArrayList<Flight> flights = findFlightsForSpeficicRequest(flightRequest);
+			final FlightRequest flightRequest = flightRequests.get(index);
+			final ArrayList<Flight> flights = findFlightsForSpeficicRequest(flightRequest);
 
 			for (int j = 0; j < flights.size(); j++) {
-				Message message = new Message(flightRequest, flights.get(j).getReference());
-				ProducerRecord<String, Message> record = new ProducerRecord<String, Message>(configuration.TOPIC_NAME, message);
+				final Message message = new Message(flightRequest, flights.get(j).getReference());
+				final ProducerRecord<String, Message> record = new ProducerRecord<String, Message>(configuration.TOPIC_NAME, message);
 
 				try {
-					RecordMetadata metadata = (RecordMetadata) kafkaProducer.send(record).get();
+					final RecordMetadata metadata = (RecordMetadata) kafkaProducer.send(record).get();
 					System.out.println("Record sent with key " + index + " to partition " + metadata.partition()
 					+ " with offset " + metadata.offset());
-				} catch (ExecutionException e) {
+				} catch (final ExecutionException e) {
 					System.out.println("Error in sending record");
 					System.out.println(e);
-				} catch (InterruptedException e) {
+				} catch (final InterruptedException e) {
 					System.out.println("Error in sending record");
 					System.out.println(e);
 				}
@@ -48,10 +48,10 @@ public class MessagePublisher {
 		}
 	}
 
-	private ArrayList<Flight> findFlightsForSpeficicRequest(FlightRequest flightRequest) {
-		// TODO: find the flights from an external provider, like sky-scanner
+	private ArrayList<Flight> findFlightsForSpeficicRequest(final FlightRequest flightRequest) {
+		// TODO: find the flights from an external provider, like sky scanner
 		// This is a fake provider code
-		ArrayList<Flight> flights = new ArrayList<Flight>();
+		final ArrayList<Flight> flights = new ArrayList<Flight>();
 		for (int i = 0; i < new Random().nextInt(100); i++) {
 			flights.add(new Flight(createRandomFlightNumber()));
 		}
@@ -60,20 +60,20 @@ public class MessagePublisher {
 	}
 
 	private ArrayList<FlightRequest> getFlightRequests() {
-		String data = (new HttpClient()).getJSON("http://localhost:5000/requests", 5000);
+		final String data = (new HttpClient()).getJSON("http://localhost:5000/requests", 5000);
 		return new Gson().fromJson(data, new TypeToken<ArrayList<FlightRequest>>() {
 		}.getType());
 	}
 	
 	private String createRandomFlightNumber() {
-		Random random = new Random();
-		char[] word = new char[2];
+		final Random random = new Random();
+		final char[] word = new char[2];
         for(int j = 0; j < word.length; j++)
         {
             word[j] = (char)('a' + random.nextInt(26));
         }
-	    String companyPreffix = new String(word).toUpperCase();
-	    String flightDailyNumber = String.format("%04d", new Random().nextInt(10000));
+	    final String companyPreffix = new String(word).toUpperCase();
+	    final String flightDailyNumber = String.format("%04d", new Random().nextInt(10000));
 	    
 	    return companyPreffix + flightDailyNumber;
 	}

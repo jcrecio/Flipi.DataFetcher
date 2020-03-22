@@ -1,0 +1,12 @@
+1. The image needs to be built and pushed into the registry
+docker login
+
+docker build -t jcrecio/flipi-datafetcher:latest -f ./Dockerfile .
+docker push jcrecio/flipi-datafetcher:latest
+
+
+2. Start the swarm (if not yet)
+docker swarm init
+
+3. Deploy into the swarm:
+docker stack deploy --compose-file docker-compose.yml datafetcher
