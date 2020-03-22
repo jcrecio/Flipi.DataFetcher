@@ -5,7 +5,8 @@ services:
         ports:
             - "9999:9999"
         networks:
-            - appnet
+            - flipinet
 networks:
-    appnet:
-        driver: overlay
+    flipinet:
+        external: true
+        name: flipinet
