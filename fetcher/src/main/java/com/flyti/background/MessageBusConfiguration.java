@@ -1,7 +1,7 @@
 package com.flyti.background;
 
-public class Configuration {
-    public String KAFKA_BROKERS = "localhost:9092";
+public class MessageBusConfiguration {
+    public String KAFKA_BROKERS = "bus_kafka:9092";
     public Integer MESSAGE_COUNT=1000;
     public String CLIENT_ID="fetcherpublisher";
     public String TOPIC_NAME="fetchertopic";

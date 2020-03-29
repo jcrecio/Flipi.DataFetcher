@@ -1,9 +1,9 @@
 version: "3.5"
 
-networks:
-    flipinet:
-        external:
-            name: flipinet
+# networks:
+#     flipinet:
+#         external:
+#             name: flipinet
 
 services:
     app:
@@ -11,4 +11,12 @@ services:
         ports:
             - "9999:9999"
         networks:
-            - flipinet
+            - public
+        deploy:
+            mode: replicated
+            replicas: 1
+            endpoint_mode: vip
+networks:
+    public:
+        external: 
+            name: public

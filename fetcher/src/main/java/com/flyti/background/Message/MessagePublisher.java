@@ -8,17 +8,17 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
-import com.flyti.background.Configuration;
+import com.flyti.background.MessageBusConfiguration;
 import com.flyti.background.tools.HttpClient;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class MessagePublisher {
 	private final KafkaProducer kafkaProducer;
-	private final Configuration configuration;
+	private final MessageBusConfiguration configuration;
 
 	public MessagePublisher(final KafkaProducer<?, ?> kafkaProducer) {
-		this.configuration = new Configuration();
+		this.configuration = new MessageBusConfiguration();
 		this.kafkaProducer = kafkaProducer;
 	}
 
@@ -60,9 +60,8 @@ public class MessagePublisher {
 	}
 
 	private ArrayList<FlightRequest> getFlightRequests() {
-		final String data = (new HttpClient()).getJSON("http://localhost:5000/requests", 5000);
-		return new Gson().fromJson(data, new TypeToken<ArrayList<FlightRequest>>() {
-		}.getType());
+		final String rawData = (new HttpClient()).getJSON("http://requestcontainer_web:5000/requests", 5000);
+		return new Gson().fromJson(rawData, new TypeToken<ArrayList<FlightRequest>>() {}.getType());
 	}
 	
 	private String createRandomFlightNumber() {

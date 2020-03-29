@@ -18,7 +18,7 @@ public class App  {
 	
     public static void main(String[] args) throws IOException
     {
-    	App.setMessagePublisher(MessagePublisherFactory.Create(new Configuration()));
+    	App.setMessagePublisher(MessagePublisherFactory.Create(new MessageBusConfiguration()));
     	App.messagePublisher.run();
     }
 }
