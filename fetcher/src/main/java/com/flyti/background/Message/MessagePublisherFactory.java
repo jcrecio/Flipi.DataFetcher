@@ -15,8 +15,8 @@ public class MessagePublisherFactory {
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class.getName());
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, MessageSerializer.class.getName());
         //props.put(ProducerConfig.PARTITIONER_CLASS_CONFIG, TopicPartitioner.class.getName());
-        MessagePublisher m = new MessagePublisher(new KafkaProducer<Object, Object>(props));
+        MessagePublisher messagePublisher = new MessagePublisher(new KafkaProducer<Object, Object>(props));
 
-        return m;
+        return messagePublisher;
     }
 }
